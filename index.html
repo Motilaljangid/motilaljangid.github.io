@@ -1,30 +1,891 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Motilal Jangid | Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moti Lal Jangid | Data Analyst & Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .profile-img {
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-bar {
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .chatbot {
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .chatbot.open {
+            transform: translateY(0);
+        }
+        
+        .chat-message {
+            max-width: 80%;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-img {
+                clip-path: circle(50% at 50% 50%);
+            }
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <img src="profile.jpg" alt="Profile Picture" class="profile-pic"/>
-    <h1>Motilal Jangid</h1>
-    <p>Data Analyst | Python Developer | Web Developer</p>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
-      <a href="skills.html">Skills</a>
-      <a href="contact.html">Contact</a>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">Moti Lal Jangid</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Home</a>
+                    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a>
+                    <a href="#experience" class="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Experience</a>
+                    <a href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Projects</a>
+                    <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a>
+                    <button id="theme-toggle" class="p-2 rounded-full focus:outline-none">
+                        <i class="fas fa-moon text-gray-700 dark:text-yellow-300"></i>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="p-2 rounded-md focus:outline-none">
+                        <i class="fas fa-bars text-gray-700 dark:text-gray-300"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">Home</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">About</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">Experience</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">Projects</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">Contact</a>
+                <div class="px-3 py-2">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full focus:outline-none">
+                        <i class="fas fa-moon text-gray-700 dark:text-yellow-300"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </nav>
-  </header>
-  <main>
-    <section>
-      <h2>About Me</h2>
-      <p>I am a highly motivated individual with a strong foundation in data analysis, programming, and visualization. Currently working at Adani Group.</p>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen pt-20 flex items-center">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Moti Lal Jangid</h1>
+                    <h2 class="text-2xl md:text-3xl text-indigo-600 dark:text-indigo-400 mb-6">Data Analyst | Python Developer | Web Developer</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg">
+                        Transforming data into actionable insights and building solutions that matter.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition shadow-lg">
+                            View Projects
+                        </a>
+                        <a href="#contact" class="px-6 py-3 border border-indigo-600 text-indigo-600 dark:text-indigo-400 rounded-lg hover:bg-indigo-50 dark:hover:bg-gray-800 transition">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center animate-float">
+                    <div class="w-64 h-64 md:w-80 md:h-80 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center">
+                        <div class="profile-img w-56 h-56 md:w-72 md:h-72 bg-gray-300 overflow-hidden rounded-full">
+                            <!-- Placeholder for profile image -->
+                            <div class="w-full h-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
+                                <span class="text-6xl font-bold text-white">ML</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
-  <footer>© 2025 Motilal Jangid • All Rights Reserved</footer>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/3 flex justify-center">
+                    <div class="w-64 h-64 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center">
+                        <div class="profile-img w-56 h-56 bg-gray-300 overflow-hidden rounded-full">
+                            <!-- Placeholder for about image -->
+                            <div class="w-full h-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
+                                <span class="text-6xl font-bold text-white">ML</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <p class="text-lg mb-6">
+                        I'm a passionate Data Analyst and Developer currently working as a Graduate Trainee at Adani Group. 
+                        With expertise in Python, SQL, Power BI, and data visualization, I specialize in transforming raw 
+                        data into meaningful insights that drive business decisions.
+                    </p>
+                    <p class="text-lg mb-6">
+                        My journey in technology began with a B.Tech in Computer Science, and since then I've been 
+                        continuously expanding my skill set through hands-on projects and professional experience. 
+                        I believe in the power of data to solve real-world problems and create impactful solutions.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>SQL</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Power BI</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Data Analysis</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Web Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Experience -->
+    <section id="experience" class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Education & Experience</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Education -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-graduation-cap text-indigo-600 dark:text-indigo-400 mr-3"></i>
+                        Education
+                    </h3>
+                    <div class="relative">
+                        <!-- Timeline -->
+                        <div class="absolute left-5 top-0 h-full w-0.5 bg-indigo-200 dark:bg-gray-700"></div>
+                        
+                        <!-- Education Item -->
+                        <div class="relative pl-12 pb-10">
+                            <div class="absolute left-5 top-1 w-4 h-4 rounded-full bg-indigo-600 dark:bg-indigo-400 border-4 border-indigo-100 dark:border-gray-800"></div>
+                            <h4 class="text-xl font-medium mb-1">B.Tech in Computer Science</h4>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Chartered Institute of Technology, Abu Road</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-500">2021 – 2025</p>
+                            <p class="mt-2">
+                                Specialized in software development and data structures with hands-on projects in data analysis and web development.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Experience -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-briefcase text-indigo-600 dark:text-indigo-400 mr-3"></i>
+                        Experience
+                    </h3>
+                    <div class="relative">
+                        <!-- Timeline -->
+                        <div class="absolute left-5 top-0 h-full w-0.5 bg-indigo-200 dark:bg-gray-700"></div>
+                        
+                        <!-- Experience Item 1 -->
+                        <div class="relative pl-12 pb-10">
+                            <div class="absolute left-5 top-1 w-4 h-4 rounded-full bg-indigo-600 dark:bg-indigo-400 border-4 border-indigo-100 dark:border-gray-800"></div>
+                            <h4 class="text-xl font-medium mb-1">Graduate Trainee</h4>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Adani Group</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-500">2025 – Present</p>
+                            <p class="mt-2">
+                                Working on data analysis projects, developing internal tools, and contributing to business intelligence initiatives.
+                            </p>
+                        </div>
+                        
+                        <!-- Experience Item 2 -->
+                        <div class="relative pl-12">
+                            <div class="absolute left-5 top-1 w-4 h-4 rounded-full bg-indigo-600 dark:bg-indigo-400 border-4 border-indigo-100 dark:border-gray-800"></div>
+                            <h4 class="text-xl font-medium mb-1">Data Analyst Intern</h4>
+                            <p class="text-gray-600 dark:text-gray-400 mb-2">Magneto IT Solutions</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-500">2024 – 2025</p>
+                            <p class="mt-2">
+                                Conducted data cleaning, analysis, and visualization projects using Python, SQL, and Power BI.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-4">My Projects</h2>
+            <p class="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+                Here are some of my notable projects that showcase my skills in data analysis and web development.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-utensils text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Zomato Data Analysis</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Analyzed Zomato restaurant data using Python and SQL to identify trends and customer preferences.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">Python</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">SQL</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">Pandas</span>
+                        </div>
+                        <a href="https://github.com/Motilaljangid" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center">
+                            <i class="fab fa-github mr-2"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center">
+                        <i class="fas fa-medal text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Nobel Prize Data Analysis</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Explored historical Nobel Prize data to uncover patterns in laureates by country, gender, and field.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">Python</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">Matplotlib</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">Seaborn</span>
+                        </div>
+                        <a href="https://github.com/Motilaljangid" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center">
+                            <i class="fab fa-github mr-2"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                        <i class="fas fa-credit-card text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Credit Card Financial Dashboard</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Created an interactive Power BI dashboard for credit card transaction analysis with SQL backend.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">Power BI</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">SQL</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">DAX</span>
+                        </div>
+                        <a href="https://github.com/Motilaljangid" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center">
+                            <i class="fab fa-github mr-2"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center">
+                        <i class="fas fa-file-alt text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Registration Form</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Developed a responsive registration form with validation using HTML, CSS, and JavaScript.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">HTML</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">CSS</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">JavaScript</span>
+                        </div>
+                        <a href="https://github.com/Motilaljangid" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center">
+                            <i class="fab fa-github mr-2"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 bg-gradient-to-r from-yellow-500 to-orange-500 flex items-center justify-center">
+                        <i class="fas fa-qrcode text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">QR Code Generator</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Built a Python application that generates QR codes from text input with customizable features.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">Python</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">Pillow</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">qrcode</span>
+                        </div>
+                        <a href="https://github.com/Motilaljangid" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center">
+                            <i class="fab fa-github mr-2"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 6 (Placeholder for future projects) -->
+                <div class="project-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <div class="h-48 bg-gradient-to-r from-red-500 to-pink-500 flex items-center justify-center">
+                        <i class="fas fa-plus text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">More Projects Coming Soon</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            I'm constantly working on new projects. Check back later or visit my GitHub for updates!
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">Python</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">SQL</span>
+                            <span class="px-2 py-1 bg-indigo-100 dark:bg-gray-600 text-indigo-800 dark:text-indigo-300 text-xs rounded">Power BI</span>
+                        </div>
+                        <a href="https://github.com/Motilaljangid" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center">
+                            <i class="fab fa-github mr-2"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12">Skills & Expertise</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Technical Skills -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-code text-indigo-600 dark:text-indigo-400 mr-3"></i>
+                        Technical Skills
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Python -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Python</span>
+                                <span class="text-gray-600 dark:text-gray-400">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="skill-bar bg-indigo-600 dark:bg-indigo-400 h-2.5 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- SQL -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">SQL</span>
+                                <span class="text-gray-600 dark:text-gray-400">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="skill-bar bg-indigo-600 dark:bg-indigo-400 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Power BI -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Power BI</span>
+                                <span class="text-gray-600 dark:text-gray-400">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="skill-bar bg-indigo-600 dark:bg-indigo-400 h-2.5 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- JavaScript -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">JavaScript</span>
+                                <span class="text-gray-600 dark:text-gray-400">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="skill-bar bg-indigo-600 dark:bg-indigo-400 h-2.5 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- HTML/CSS -->
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">HTML/CSS</span>
+                                <span class="text-gray-600 dark:text-gray-400">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                <div class="skill-bar bg-indigo-600 dark:bg-indigo-400 h-2.5 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools & Soft Skills -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                        <i class="fas fa-tools text-indigo-600 dark:text-indigo-400 mr-3"></i>
+                        Tools & Soft Skills
+                    </h3>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Tableau</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Excel</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Jupyter</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Problem Solving</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Communication</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Team Collaboration</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-indigo-600 dark:text-indigo-400 mr-2"></i>
+                            <span>Data Visualization</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-semibold mt-8 mb-4 flex items-center">
+                        <i class="fas fa-certificate text-indigo-600 dark:text-indigo-400 mr-3"></i>
+                        Certifications
+                    </h3>
+                    
+                    <div class="space-y-2">
+                        <div class="flex items-start">
+                            <i class="fas fa-award text-indigo-600 dark:text-indigo-400 mt-1 mr-2"></i>
+                            <div>
+                                <h4 class="font-medium">Magneto IT Data Analyst Training</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">2024</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-award text-indigo-600 dark:text-indigo-400 mt-1 mr-2"></i>
+                            <div>
+                                <h4 class="font-medium">Rubicon Soft Skills Certificate</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-4">Get In Touch</h2>
+            <p class="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+                Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-12">
+                <!-- Contact Form -->
+                <div class="md:w-1/2">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-1">Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium mb-1">Subject</label>
+                            <input type="text" id="subject" name="subject" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-1">Message</label>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition w-full">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="md:w-1/2">
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md h-full">
+                        <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 dark:bg-indigo-900 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-indigo-600 dark:text-indigo-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <a href="mailto:motilalj817@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">motilalj817@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 dark:bg-indigo-900 p-3 rounded-full mr-4">
+                                    <i class="fab fa-linkedin text-indigo-600 dark:text-indigo-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">LinkedIn</h4>
+                                    <a href="https://linkedin.com/in/moti-lal-jangid-469b11241/" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">linkedin.com/in/moti-lal-jangid</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 dark:bg-indigo-900 p-3 rounded-full mr-4">
+                                    <i class="fab fa-github text-indigo-600 dark:text-indigo-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">GitHub</h4>
+                                    <a href="https://github.com/Motilaljangid" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">github.com/Motilaljangid</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h4 class="font-medium mb-4">Let's Connect</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://linkedin.com/in/moti-lal-jangid-469b11241/" target="_blank" class="bg-gray-100 dark:bg-gray-600 p-3 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900 transition">
+                                    <i class="fab fa-linkedin text-gray-700 dark:text-gray-300"></i>
+                                </a>
+                                <a href="https://github.com/Motilaljangid" target="_blank" class="bg-gray-100 dark:bg-gray-600 p-3 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900 transition">
+                                    <i class="fab fa-github text-gray-700 dark:text-gray-300"></i>
+                                </a>
+                                <a href="mailto:motilalj817@gmail.com" class="bg-gray-100 dark:bg-gray-600 p-3 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900 transition">
+                                    <i class="fas fa-envelope text-gray-700 dark:text-gray-300"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-xl font-bold text-indigo-400">Moti Lal Jangid</span>
+                    <p class="mt-2">Data Analyst | Python Developer | Web Developer</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://linkedin.com/in/moti-lal-jangid-469b11241/" target="_blank" class="hover:text-indigo-400 transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://github.com/Motilaljangid" target="_blank" class="hover:text-indigo-400 transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="mailto:motilalj817@gmail.com" class="hover:text-indigo-400 transition">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p>&copy; 2023 Moti Lal Jangid. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Button -->
+    <button id="chatbot-toggle" class="fixed bottom-6 right-6 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700 transition z-50">
+        <i class="fas fa-robot text-xl"></i>
+    </button>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="fixed bottom-20 right-6 w-80 bg-white dark:bg-gray-700 rounded-lg shadow-xl overflow-hidden z-50 chatbot">
+        <div class="bg-indigo-600 text-white p-4 flex justify-between items-center">
+            <h3 class="font-semibold">MLJ Assistant</h3>
+            <button id="chatbot-close" class="focus:outline-none">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="chatbot-messages" class="p-4 h-64 overflow-y-auto">
+            <div class="chat-message bg-indigo-100 dark:bg-gray-600 rounded-lg p-3 mb-3">
+                <p>Hello! I'm an AI assistant here to answer questions about Moti Lal Jangid's skills, projects, and experience. How can I help you today?</p>
+            </div>
+        </div>
+        <div class="p-4 border-t border-gray-200 dark:border-gray-600">
+            <div class="flex">
+                <input id="chatbot-input" type="text" placeholder="Ask me something..." class="flex-1 px-4 py-2 rounded-l-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:bg-gray-600">
+                <button id="chatbot-send" class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-700 transition">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <a href="#home" id="back-to-top" class="fixed bottom-6 left-6 bg-gray-700 text-white p-3 rounded-full shadow-lg hover:bg-gray-800 transition hidden z-50">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        
+        function toggleTheme() {
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon text-gray-700"></i>';
+                themeToggleMobile.innerHTML = '<i class="fas fa-moon text-gray-700"></i>';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun text-yellow-300"></i>';
+                themeToggleMobile.innerHTML = '<i class="fas fa-sun text-yellow-300"></i>';
+            }
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun text-yellow-300"></i>';
+            themeToggleMobile.innerHTML = '<i class="fas fa-sun text-yellow-300"></i>';
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggle.innerHTML = '<i class="fas fa-moon text-gray-700"></i>';
+            themeToggleMobile.innerHTML = '<i class="fas fa-moon text-gray-700"></i>';
+        }
+        
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        // Chatbot Functionality
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotClose = document.getElementById('chatbot-close');
+        const chatbotContainer = document.getElementById('chatbot-container');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotSend = document.getElementById('chatbot-send');
+        
+        chatbotToggle.addEventListener('click', () => {
+            chatbotContainer.classList.toggle('open');
+        });
+        
+        chatbotClose.addEventListener('click', () => {
+            chatbotContainer.classList.remove('open');
+        });
+        
+        function addBotMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message bg-indigo-100 dark:bg-gray-600 rounded-lg p-3 mb-3';
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+        
+        function addUserMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message bg-gray-200 dark:bg-gray-800 rounded-lg p-3 mb-3 ml-auto';
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+        
+        function handleChatbotQuery(query) {
+            query = query.toLowerCase();
+            
+            // Simple AI responses based on keywords
+            if (query.includes('hello') || query.includes('hi') || query.includes('hey')) {
+                addBotMessage("Hello! How can I help you with information about Moti Lal Jangid?");
+            } 
+            else if (query.includes('skill') || query.includes('expertise') || query.includes('what can you do')) {
+                addBotMessage("Moti Lal has expertise in:<br>- Python programming<br>- SQL database management<br>- Power BI and data visualization<br>- Web development with HTML/CSS/JavaScript<br>- Data analysis and problem solving");
+            }
+            else if (query.includes('project') || query.includes('work')) {
+                addBotMessage("Some of Moti Lal's notable projects include:<br>1. Zomato Data Analysis (Python + SQL)<br>2. Nobel Prize Data Analysis (Python)<br>3. Credit Card Financial Dashboard (Power BI + SQL)<br>4. Registration Form (HTML/CSS/JS)<br>5. QR Code Generator (Python)<br><br>You can view these projects in the Projects section or on his GitHub.");
+            }
+            else if (query.includes('experience') || query.includes('job') || query.includes('work')) {
+                addBotMessage("Moti Lal's professional experience includes:<br><br>1. Graduate Trainee at Adani Group (2025–Present)<br>- Working on data analysis projects and business intelligence<br><br>2. Data Analyst Intern at Magneto IT Solutions (2024–2025)<br>- Conducted data cleaning, analysis, and visualization");
+            }
+            else if (query.includes('education') || query.includes('degree') || query.includes('study')) {
+                addBotMessage("Moti Lal completed his B.Tech in Computer Science from Chartered Institute of Technology, Abu Road (2021–2025). He specialized in software development and data structures with hands-on projects in data analysis and web development.");
+            }
+            else if (query.includes('contact') || query.includes('email') || query.includes('linkedin') || query.includes('github')) {
+                addBotMessage("You can contact Moti Lal through:<br>- Email: motilalj817@gmail.com<br>- LinkedIn: linkedin.com/in/moti-lal-jangid-469b11241/<br>- GitHub: github.com/Motilaljangid<br><br>You can also use the contact form on this website.");
+            }
+            else if (query.includes('certification') || query.includes('certificate') || query.includes('training')) {
+                addBotMessage("Moti Lal has completed these certifications:<br>1. Magneto IT Data Analyst Training (2024)<br>2. Rubicon Soft Skills Certificate (2023)");
+            }
+            else {
+                addBotMessage("I'm not sure I understand. You can ask me about:<br>- Moti Lal's skills<br>- His projects<br>- Work experience<br>- Education<br>- Contact information");
+            }
+        }
+        
+        chatbotSend.addEventListener('click', () => {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                addUserMessage(message);
+                chatbotInput.value = '';
+                setTimeout(() => {
+                    handleChatbotQuery(message);
+                }, 500);
+            }
+        });
+        
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const message = chatbotInput.value.trim();
+                if (message) {
+                    addUserMessage(message);
+                    chatbotInput.value = '';
+                    setTimeout(() => {
+                        handleChatbotQuery(message);
+                    }, 500);
+                }
+            }
+        });
+        
+        // Form Submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the form data to a server
+            // For this example, we'll just show an alert
+            alert(`Thank you, ${name}! Your message has been received. I'll get back to you soon at ${email}.`);
+            
+            // Reset form
+            contactForm.reset();
+        });
+        
+        // Animate skill bars on scroll
+        const skillBars = document.querySelectorAll('.skill-bar');
+        
+        function animateSkillBars() {
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        }
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkillBars();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.skill-bar').forEach(bar => {
+            observer.observe(bar.parentElement.parentElement);
+        });
+    </script>
 </body>
 </html>
